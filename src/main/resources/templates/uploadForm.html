@@ -1,0 +1,38 @@
+<html>
+<body>
+
+
+
+<form method="post" enctype="multipart/form-data">
+
+
+	<div>
+		<label for="file">Choose file to upload</label>
+		<input type="file" id="file" name="file" >
+	</div>
+	<div>
+		<button onclick="uploadFile()">Submit</button>
+	</div>
+</form>
+
+<audio id="id1" src="/file/Army Of Lovers - Crucified.mp3"  controls="controls">
+<!--	<source src="/file/Army Of Lovers - Crucified.mp3" type="audio/mpeg">-->
+</audio>
+
+	<script type="text/javascript"
+				src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript">
+
+		async function uploadFile() {
+			let formData = new FormData();
+			formData.append("file", fileupload.files[0]);
+			await fetch('/uploadForm', {
+				method: "POST",
+				body: formData
+			});
+			alert('The file has been uploaded successfully.');
+		}
+	</script>
+
+</body>
+</html>

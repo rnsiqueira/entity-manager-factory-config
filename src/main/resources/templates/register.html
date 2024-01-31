@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+</head>
+<body>
+<div style="width: 300px; height: 400px">
+  <label for="firstName">firstName</label>
+  <input id="firstName" type="text" name="firstName">
+  <hr>
+  <label for="lastName">lastName</label>
+  <input id="lastName" type="text" name="lastName">
+  <hr>
+  <label for="age">age</label>
+  <input id="age" type="text" name="age">
+  <hr>
+  <label for="email">email</label>
+  <input id="email" type="email" name="email">
+  <hr>
+  <label for="password">password</label>
+  <input id="password" type="password" name="password">
+  <hr>
+  <button onclick="registerUser()">save</button>
+
+</div>
+<script type="text/javascript"
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+  function registerUser() {
+
+    let firstName =  document.getElementById('firstName').value;
+    let lastName =  document.getElementById('lastName').value;
+    let age =  document.getElementById('age').value;
+    let email =  document.getElementById('email').value;
+    let password =  document.getElementById('password').value;
+
+    let request = {
+      'firstName':firstName,
+      'lastName': lastName,
+      'age' : age,
+      'email': email,
+      'password': password
+    }
+
+    $.ajax({
+      type: "POST",
+      contentType: "application/json",
+      url: "/user",
+      data: JSON.stringify(request),
+      dataType: 'json',
+      cache: false,
+      timeout: 600000,
+      success: function (data) {
+        console.log(data);
+        window.location.href = 'home.html';
+      },
+      error: function (error) {
+        console.log("ERROR : ", error);
+      }
+    });
+  }
+
+</script>
+</body>
+</html>
